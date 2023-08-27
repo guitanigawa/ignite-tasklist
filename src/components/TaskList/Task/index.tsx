@@ -39,8 +39,8 @@ export default function Task({
             <input 
                 type="checkbox"
                 onChange={()=>toggleTaskDone(id)}
-            />
-                
+            /> 
+
             {
                 isEditing ? (
                     <form onSubmit={handleEditForm}>

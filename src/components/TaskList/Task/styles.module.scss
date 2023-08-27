@@ -18,11 +18,19 @@
 
     label{
         line-height: 100%;
+        font-size: 1.1rem;
     }
 
     .done{
         text-decoration: line-through;
         color: var(--gray-300);
+    }
+
+    input[type="checkbox"]{
+        cursor: pointer;
+        
+        width: 1rem;
+        height: 1rem;
     }
 
     form{

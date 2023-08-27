@@ -1,7 +1,7 @@
-import styles from "./styles.module.scss"
-import Plus from "../../assets/plus.svg"   
+import styles from "./styles.module.scss" 
 import { useState } from "react"
 import { useTasks } from "../../hooks/useTasks"
+import { PlusCircle } from "react-feather"
 
 export default function Input(){
     const [currentText, setCurrentText] = useState<string>("")
@@ -29,8 +29,12 @@ export default function Input(){
                 value={currentText}
             />
             <button type="submit">
-                Criar
-                <img src={Plus} alt="Plus"/>
+                <span>Criar</span>
+                
+                <PlusCircle
+                    color="white"
+                    size="1rem"
+                />
             </button>
         </form>
     )
