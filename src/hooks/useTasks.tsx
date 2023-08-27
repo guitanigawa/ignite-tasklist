@@ -11,7 +11,8 @@ interface TasksContext{
     tasks: Task[],
     createTask: (text: string)=>void,
     deleteTask: (id: number)=>void,
-    toggleTaskDone: (id: number)=>void
+    toggleTaskDone: (id: number)=>void,
+    editTask: (id: number, newText: string)=>void
 }
 
 const TasksContext = createContext({} as TasksContext)
@@ -46,8 +47,18 @@ export function TasksProvider({ children }: React.PropsWithChildren){
         }))
     }
 
+    const editTask = (id: number, newText: string) => {
+        setTasks(tasks.map(task=>{
+            if(task.id == id){
+                task.text = newText
+            }
+
+            return task
+        }))
+    }
+
     return(
-        <TasksContext.Provider value={{tasks, createTask,  deleteTask, toggleTaskDone}}>
+        <TasksContext.Provider value={{tasks, createTask,  deleteTask, toggleTaskDone, editTask}}>
             {children}
         </TasksContext.Provider>
     )

@@ -6,8 +6,8 @@
     
     display: grid;
     grid-template-columns: 1rem auto 1rem;
-    align-items: start;
-    gap: 0.75rem;
+    align-items: center;
+    column-gap: 0.75rem;
     
     color: white;
 
@@ -25,8 +25,43 @@
         color: var(--gray-300);
     }
 
-    span{
-        cursor: pointer;
-    }
+    form{
+        display: grid;
+        grid-template-columns: 8fr 1fr;
+        column-gap: 0.75rem;
+        
+        height: 80%;
 
+        input{
+            background-color: var(--gray-800);
+            
+            border: 0;
+            border-bottom: 1px solid var(--blue);
+            
+            color: var(--gray-200);
+    
+            &:focus{
+                outline: 0
+            }
+        }
+
+        button{
+            background-color: var(--blue-dark);
+
+            border: 0;
+            border-radius: 0.5rem;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            &:hover{
+                background-color: var(--blue);
+            }
+        }
+    }
 }

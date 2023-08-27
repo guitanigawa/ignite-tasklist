@@ -36,9 +36,10 @@
             margin-left: 0.4rem;
         }
 
+        cursor: pointer;
+        
         &:hover{
             background-color: var(--blue);
-            cursor: pointer;
         }
     }
 }

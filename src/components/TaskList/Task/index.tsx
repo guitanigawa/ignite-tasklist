@@ -1,9 +1,9 @@
-import { Trash2 } from "react-feather"
+import { Trash2, Edit, Send } from "react-feather"
 import styles from "./styles.module.scss"
 import { useState } from "react"
 import { useTasks } from "../../../hooks/useTasks"
 
-type TrashColorType = "gray" | "red"
+type ColorsType = "gray" | "red" | "white"
 
 interface TaskProps{
     id: number,
@@ -16,8 +16,20 @@ export default function Task({
     text,
     isDone
 }: TaskProps){
-    const [trashColor, setTrashColor] = useState<TrashColorType>("gray")
-    const { deleteTask, toggleTaskDone} = useTasks()
+    
+    const [trashColor, setTrashColor] = useState<ColorsType>("gray")
+    const [editColor, setEditColor] = useState<ColorsType>("gray")
+    const [isEditing, setIsEditing] = useState<boolean>(false)
+    const [currentEditedTask, setCurrrentEditedTask] = useState<string>(text)
+    const { deleteTask, toggleTaskDone, editTask } = useTasks()
+
+    const handleEditForm = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        editTask(id, currentEditedTask)
+        setIsEditing(false)
+    }
+
 
     return (
         <li 
@@ -28,22 +40,55 @@ export default function Task({
                 type="checkbox"
                 onChange={()=>toggleTaskDone(id)}
             />
-            
-            <label
-                className={isDone ? styles.done : ""}
-            >
-                {text}
-            </label>
+                
+            {
+                isEditing ? (
+                    <form onSubmit={handleEditForm}>
+                        <input 
+                            type="text" 
+                            placeholder="Edite sua tarefa..."
+                            onChange={e=>setCurrrentEditedTask(e.target.value)}
+                            value={currentEditedTask}
+                        />
 
-            <span
-                onMouseEnter={()=>setTrashColor("red")}
-                onMouseLeave={()=>setTrashColor("gray")}
-                onClick={()=>deleteTask(id)}
-            >
+                        <button type="submit">
+                            <Send
+                                color="white"
+                                size="1rem"
+                            />
+                        </button>
+                    </form>
+                )
+                
+                :
+
+                (
+                    <label
+                        className={isDone ? styles.done : ""}
+                    >
+                        {text}
+                    </label>
+                )
+
+            }
+
+            <span>
                 <Trash2
                     color={trashColor}
                     size="1rem"
-                    className={styles.deleteButton}
+                    onMouseEnter={()=>setTrashColor("red")}
+                    onMouseLeave={()=>setTrashColor("gray")}
+                    onClick={()=>deleteTask(id)}
+                    cursor="pointer"
+                />
+
+                <Edit
+                    color={editColor}
+                    size="1rem"
+                    onMouseEnter={()=>setEditColor("white")}
+                    onMouseLeave={()=>setEditColor("gray")}
+                    onClick={()=>setIsEditing(!isEditing)}
+                    cursor="pointer"
                 />
             </span>
         </li>
