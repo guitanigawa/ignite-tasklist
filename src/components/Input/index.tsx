@@ -27,6 +27,7 @@ export default function Input(){
                 placeholder="Adicione uma nova tarefa"
                 onChange={(e)=>setCurrentText(e.target.value)}
                 value={currentText}
+                required
             />
             <button type="submit">
                 <span>Criar</span>

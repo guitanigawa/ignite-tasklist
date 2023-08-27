@@ -49,6 +49,7 @@ export default function Task({
                             placeholder="Edite sua tarefa..."
                             onChange={e=>setCurrrentEditedTask(e.target.value)}
                             value={currentEditedTask}
+                            required
                         />
 
                         <button type="submit">
