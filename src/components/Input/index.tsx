@@ -5,13 +5,15 @@ import { useTasks } from "../../hooks/useTasks"
 
 export default function Input(){
     const [currentText, setCurrentText] = useState<string>("")
-    const { createTask, tasks } = useTasks()
+    const { createTask } = useTasks()
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         
+
         createTask(currentText)
+        setCurrentText("")
     }
 
 
@@ -24,6 +26,7 @@ export default function Input(){
                 type="text" 
                 placeholder="Adicione uma nova tarefa"
                 onChange={(e)=>setCurrentText(e.target.value)}
+                value={currentText}
             />
             <button type="submit">
                 Criar

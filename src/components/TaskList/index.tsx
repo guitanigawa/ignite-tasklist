@@ -11,7 +11,7 @@ export default function TaskList(){
         tasks.length == 0 ? (
             <section className={styles.NoTasksContainer}>
                 <Clipboard 
-                    color="gray" 
+                    color="#333333" 
                     size={60}
                 />
                 <label>Você ainda não tem tarefas cadastradas</label>
